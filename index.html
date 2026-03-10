@@ -645,7 +645,7 @@
 <nav>
     <div class="nav-inner">
         <a href="#" class="logo">Founder<span>Endorsed</span></a>
-        <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="nav-cta">Book a Free Call →</a>
+        <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="nav-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Call →</a>
     </div>
 </nav>
 
@@ -656,7 +656,7 @@
     <div class="hero-badge">Built by a founder who's been through it</div>
     <h1>Get your Innovator Founder Visa <em>endorsed</em> — without the £10k consultants</h1>
     <p>I got rejected, pivoted, and got endorsed for my AI startup. Now I help founders get endorsement-ready — from business plan review to interview coaching.</p>
-    <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="hero-cta">Book a Free Intro Call</a>
+    <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="hero-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Intro Call</a>
     <span class="hero-sub">15-min call · then £499 for the full package · no retainers, no upsells</span>
 </section>
 
@@ -837,7 +837,7 @@
                     <li>Review delivered within 7 business days</li>
                 </ul>
             </div>
-            <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="price-cta">Book a Free Intro Call →</a>
+            <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="price-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Intro Call →</a>
             <div class="price-compare">Agencies charge £5,000–£15,000 for less. You'll get more from someone who's actually done it.</div>
         </div>
     </div>
@@ -881,7 +881,7 @@
 <section class="final-cta fade-in">
     <h2>Don't submit your Innovator Founder Visa business plan and hope for the best</h2>
     <p>Get expert business plan review, revision support, and interview coaching from someone who's been through the UK startup visa endorsement process — and knows what gets endorsed.</p>
-    <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="hero-cta">Book a Free Intro Call →</a>
+    <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="hero-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Intro Call →</a>
 </section>
 
 </main>
@@ -930,6 +930,23 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18006245330/YXM8CMmF_IUcENL_hYpD',
+      'value': 1.0,
+      'currency': 'GBP',
+      'event_callback': callback
+  });
+  return false;
+}
 </script>
 
 </body>
