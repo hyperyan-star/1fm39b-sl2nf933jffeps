@@ -595,6 +595,69 @@
         }
 
 
+        /* ── ENQUIRY FORM ── */
+        .enquiry-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .enquiry-form input,
+        .enquiry-form textarea,
+        .enquiry-form select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fff;
+            color: var(--ink);
+            transition: border-color 0.2s;
+        }
+        .enquiry-form input:focus,
+        .enquiry-form textarea:focus,
+        .enquiry-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .enquiry-form textarea {
+            resize: vertical;
+        }
+        .enquiry-form button {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+        .enquiry-form button:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ── SOFT CTA ── */
+        .soft-cta-link {
+            display: inline-block;
+            background: #fff;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .soft-cta-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
         /* ── ANIMATIONS ── */
         .fade-in {
             opacity: 0;
@@ -786,7 +849,7 @@
                     <li>Review delivered within 7 business days</li>
                 </ul>
             </div>
-            <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="price-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Intro Call →</a>
+            <a href="#enquiry" class="price-cta" onclick="gtag_report_conversion_scroll('#enquiry')">Get Started →</a>
             <div class="price-compare">Agencies charge £5,000–£15,000 for less. You'll get more from someone who's actually done it.</div>
         </div>
     </div>
@@ -826,11 +889,56 @@
     </div>
 </section>
 
+<!-- ENQUIRY FORM -->
+<section class="fade-in" id="enquiry">
+    <div class="section-inner" style="max-width: 600px;">
+        <div class="section-label">Get started</div>
+        <h2 class="section-title">Tell me about your business</h2>
+        <p style="color: var(--muted); margin-bottom: 2rem;">Fill in the form below and I'll get back to you within 24 hours. No commitment — just tell me where you're at and I'll let you know how I can help.</p>
+        <form action="https://formspree.io/f/mnjgzqll" method="POST" class="enquiry-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="business">Tell me briefly about your business idea</label>
+                <textarea id="business" name="business" rows="3"></textarea>
+            </div>
+            <div>
+                <label for="stage">Where are you in the process?</label>
+                <select id="stage" name="stage">
+                    <option value="">Select one...</option>
+                    <option value="drafting">Still drafting my business plan</option>
+                    <option value="ready">Business plan ready, haven't applied yet</option>
+                    <option value="rejected">Applied and got rejected</option>
+                    <option value="choosing">Choosing an endorsing body</option>
+                    <option value="other">Other / just exploring</option>
+                </select>
+            </div>
+            <button type="submit">Send Enquiry →</button>
+            <p style="font-size: 0.8rem; color: var(--muted); text-align: center;">No commitment. I'll reply within 24 hours with my honest take on how I can help.</p>
+        </form>
+    </div>
+</section>
+
+<!-- SOFT CTA -->
+<section class="fade-in" style="background: var(--accent-light); padding: 3rem 2rem;">
+    <div class="section-inner" style="max-width: 600px; text-align: center;">
+        <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Not ready for a full review?</p>
+        <p style="color: var(--muted); margin-bottom: 1.25rem;">Send me your business plan and I'll give you a free 2-minute first impression — no strings attached.</p>
+        <a href="mailto:hello@founderendorsed.co.uk?subject=Free First Impression Request&body=Hi, I'd love a quick first impression of my Innovator Founder business plan. I've attached it here." class="soft-cta-link">Send My Plan for a Free First Look →</a>
+    </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta fade-in">
     <h2>Don't submit your Innovator Founder Visa business plan and hope for the best</h2>
     <p>Get expert business plan review, revision support, and interview coaching from someone who's been through the UK startup visa endorsement process — and knows what gets endorsed.</p>
-    <a href="https://calendly.com/hello-founderendorsed/15min" target="_blank" rel="noopener" class="hero-cta" onclick="return gtag_report_conversion('https://calendly.com/hello-founderendorsed/15min')">Book a Free Intro Call →</a>
+    <a href="#enquiry" class="hero-cta" onclick="gtag_report_conversion_scroll('#enquiry')">Get Started — £499 →</a>
 </section>
 
 </main>
@@ -898,6 +1006,17 @@ function gtag_report_conversion(url) {
       'send_to': 'AW-18006245330/yj1iCPKryoYcENL_hYpD'
   });
   return false;
+}
+
+function gtag_report_conversion_scroll(anchor) {
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18006245330/YXM8CMmF_IUcENL_hYpD',
+      'value': 1.0,
+      'currency': 'GBP'
+  });
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18006245330/yj1iCPKryoYcENL_hYpD'
+  });
 }
 </script>
 
