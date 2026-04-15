@@ -1188,27 +1188,6 @@
         .footer-links { margin-top: 0.5rem; }
         .footer-links a { margin: 0 0.5rem; }
 
-        /* ══════════════════════════════════════════
-           ANIMATIONS
-           ══════════════════════════════════════════ */
-        .fade-in {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        /* Staggered children */
-        .stagger-children .fade-in-child {
-            opacity: 0; transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .stagger-children.visible .fade-in-child { opacity: 1; transform: translateY(0); }
-        .stagger-children.visible .fade-in-child:nth-child(1) { transition-delay: 0.1s; }
-        .stagger-children.visible .fade-in-child:nth-child(2) { transition-delay: 0.2s; }
-        .stagger-children.visible .fade-in-child:nth-child(3) { transition-delay: 0.3s; }
-        .stagger-children.visible .fade-in-child:nth-child(4) { transition-delay: 0.4s; }
-        .stagger-children.visible .fade-in-child:nth-child(5) { transition-delay: 0.5s; }
-        .stagger-children.visible .fade-in-child:nth-child(6) { transition-delay: 0.6s; }
-
         .hidden { display: none !important; }
     </style>
 </head>
@@ -1228,7 +1207,6 @@
     <div class="nav-inner">
         <a href="#" class="logo">Founder<span>Endorsed</span></a>
         <div class="nav-links">
-            <a href="#how-it-works" class="nav-link">How It Works</a>
             <a href="#pricing" class="nav-link">Pricing</a>
             <a href="#review-tool" class="nav-cta" onclick="trackEvent('nav_cta_click')">Review My Plan</a>
         </div>
@@ -1242,66 +1220,27 @@
     <div class="hero-orb hero-orb-3"></div>
 
     <section class="hero">
-        <div class="hero-badge">Updated for 2026 criteria</div>
-        <h1>AI-powered business plan review for the <em>Innovator Founder Visa</em></h1>
-        <p class="hero-sub">Get your plan analysed against the 3 endorsement criteria &mdash; Innovation, Viability, Scalability. AI scoring combined with human insights from real endorsement feedback.</p>
+        <h1>Know if your <em>Innovator Founder Visa</em> plan will pass &mdash; before you submit it.</h1>
+        <p class="hero-sub">AI-powered scoring against the 3 endorsement criteria: Innovation, Viability, Scalability.</p>
         <div class="hero-cta-wrap">
-            <a href="#review-tool" class="cta-primary" onclick="trackEvent('hero_cta_click')">Submit My Plan &rarr;</a>
-            <span class="hero-note">AI scoring &middot; &pound;149 same-day &middot; &pound;349 expert review &middot; &pound;99 strategy call</span>
+            <a href="#review-tool" class="cta-primary" onclick="trackEvent('hero_cta_click')">Score My Plan &rarr;</a>
+            <span class="hero-note">From &pound;99 &middot; Same-day AI report &middot; Stripe checkout</span>
         </div>
     </section>
 
-    <!-- Hero Mockup -->
-    <div class="hero-mockup">
-        <div class="mockup-label">Example scores from the report</div>
-        <div class="mockup-gauges">
-            <div class="mockup-gauge">
-                <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-green)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="65.4" transform="rotate(-90 60 60)" opacity="0.3" filter="blur(3px)"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-green)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="65.4" transform="rotate(-90 60 60)"/>
-                    <text x="60" y="65" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="28" font-weight="800">8</text>
-                </svg>
-                <div class="mockup-gauge-label">Innovation</div>
-            </div>
-            <div class="mockup-gauge">
-                <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-amber)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="163.5" transform="rotate(-90 60 60)" opacity="0.3" filter="blur(3px)"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-amber)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="163.5" transform="rotate(-90 60 60)"/>
-                    <text x="60" y="65" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="28" font-weight="800">5</text>
-                </svg>
-                <div class="mockup-gauge-label">Viability</div>
-            </div>
-            <div class="mockup-gauge">
-                <svg viewBox="0 0 120 120" aria-hidden="true">
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-green)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="98.1" transform="rotate(-90 60 60)" opacity="0.3" filter="blur(3px)"/>
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad-green)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="98.1" transform="rotate(-90 60 60)"/>
-                    <text x="60" y="65" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="28" font-weight="800">7</text>
-                </svg>
-                <div class="mockup-gauge-label">Scalability</div>
-            </div>
-        </div>
-    </div>
-
     <!-- Trust Bar -->
     <div class="trust-bar">
-        <div class="trust-item">
-            <div class="trust-number">3</div>
-            <div class="trust-label">Criteria scored</div>
-        </div>
         <div class="trust-item">
             <div class="trust-number">2026</div>
             <div class="trust-label">Latest criteria</div>
         </div>
         <div class="trust-item">
-            <div class="trust-number">Real</div>
-            <div class="trust-label">Endorsement feedback</div>
+            <div class="trust-number">48h</div>
+            <div class="trust-label">Max turnaround</div>
         </div>
         <div class="trust-item">
-            <div class="trust-number">48h</div>
-            <div class="trust-label">Report turnaround</div>
+            <div class="trust-number">3</div>
+            <div class="trust-label">Pricing tiers</div>
         </div>
     </div>
 
@@ -1478,35 +1417,8 @@
     <div class="section-inner story-content">
         <div class="section-label-dark">The founder</div>
         <h2 class="section-title-light">I got rejected. Then I learned what endorsing bodies actually want.</h2>
-        <p>When I applied for my Innovator Founder Visa with my AI startup, I thought having a strong business was enough. It wasn't. I got rejected &mdash; more than once, by different endorsing bodies.</p>
-        <p>Each rejection taught me something the official guidance doesn't tell you: what "innovative" really means to UKES, Innovator International, and Envestors. How they actually evaluate "viability." What makes them say no to a scalability section that looks fine on paper.</p>
-        <div class="story-highlight">After learning exactly what endorsing bodies look for &mdash; from real rejection feedback and real endorsement interviews &mdash; I built this tool to give every founder the feedback I wish I'd had.</div>
-        <p>This reviewer is built on those lessons. It's not a generic AI &mdash; it's purpose-built for the Innovator Founder Visa, using the latest 2026 criteria and real patterns from successful and unsuccessful applications.</p>
-    </div>
-</section>
-
-<!-- ═══════════ HOW IT WORKS ═══════════ -->
-<section class="section-light fade-in" id="how-it-works">
-    <div class="section-inner">
-        <div class="section-label-dark">How it works</div>
-        <h2 class="section-title-light">Three steps to know where your plan stands</h2>
-        <div class="process-steps stagger-children">
-            <div class="process-step fade-in-child">
-                <div class="step-number">1</div>
-                <h3>Submit your plan</h3>
-                <p>Paste your business plan into the form along with any context about your target endorsing body.</p>
-            </div>
-            <div class="process-step fade-in-child">
-                <div class="step-number">2</div>
-                <h3>We review it</h3>
-                <p>AI-powered analysis combined with human judgement, scored against Innovation, Viability, and Scalability.</p>
-            </div>
-            <div class="process-step fade-in-child">
-                <div class="step-number">3</div>
-                <h3>Get your full report</h3>
-                <p>Pick AI Review (&pound;149, same business day) or Expert Review (&pound;349, 3 days, with senior reviewer + 30-min call). Delivered to your inbox.</p>
-            </div>
-        </div>
+        <p>I applied for my Innovator Founder Visa thinking a strong business was enough. It wasn't &mdash; I got rejected, more than once, by different endorsing bodies.</p>
+        <div class="story-highlight">Built on the rejection feedback and endorsement interviews I wish I'd had access to. Purpose-built for the Innovator Founder Visa, using the latest 2026 criteria.</div>
     </div>
 </section>
 
@@ -1516,36 +1428,21 @@
         <div class="section-label-dark">What's in the report</div>
         <h2 class="section-title-light">Not just scores &mdash; actionable feedback that tells you what to fix</h2>
         <p class="section-desc">The full report goes beyond surface-level analysis. Every weakness comes with a specific suggestion for how to address it.</p>
-        <div class="offer-grid stagger-children">
-            <div class="offer-card fade-in-child">
-                <div class="offer-icon" aria-hidden="true">&#128161;</div>
-                <h3>Innovation Score &amp; Analysis</h3>
-                <p>How your plan measures up on innovation. Specific weaknesses and what endorsing bodies actually look for.</p>
-            </div>
-            <div class="offer-card fade-in-child">
-                <div class="offer-icon" aria-hidden="true">&#128200;</div>
-                <h3>Viability Assessment</h3>
-                <p>Financial projections, market evidence, and business model gaps flagged against endorsing body expectations.</p>
-            </div>
-            <div class="offer-card fade-in-child">
-                <div class="offer-icon" aria-hidden="true">&#128640;</div>
-                <h3>Scalability Evaluation</h3>
-                <p>Growth strategy and scaling plan assessed against real endorsement feedback.</p>
-            </div>
-            <div class="offer-card fade-in-child">
+        <div class="offer-grid">
+            <div class="offer-card">
                 <div class="offer-icon" aria-hidden="true">&#9997;&#65039;</div>
-                <h3>Improvement Suggestions</h3>
-                <p>Concrete recommendations for restructuring and reframing the sections that matter most.</p>
+                <h3>Specific improvement suggestions</h3>
+                <p>Concrete fixes for the sections that matter most. Not generic advice &mdash; targeted to your plan.</p>
             </div>
-            <div class="offer-card fade-in-child">
+            <div class="offer-card">
                 <div class="offer-icon" aria-hidden="true">&#128680;</div>
-                <h3>Red Flag Detector</h3>
-                <p>Flags the specific phrases, claims, and gaps that commonly lead to rejection &mdash; so you can fix them before you submit.</p>
+                <h3>Red flag detector</h3>
+                <p>Flags the phrases, claims, and gaps that commonly lead to rejection &mdash; so you can fix them before you submit.</p>
             </div>
-            <div class="offer-card fade-in-child">
+            <div class="offer-card">
                 <div class="offer-icon" aria-hidden="true">&#128197;</div>
-                <h3>2026 Criteria Alignment</h3>
-                <p>Scored against the latest published criteria &mdash; not outdated templates.</p>
+                <h3>2026 criteria alignment</h3>
+                <p>Scored against the latest published endorsement criteria, not outdated templates.</p>
             </div>
         </div>
     </div>
@@ -1612,9 +1509,7 @@
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">How does the review work?</div><div class="faq-a">You submit your plan via the form. We analyse it using AI tools combined with human judgement, scoring it against the same Innovation, Viability, and Scalability criteria endorsing bodies use. Built on real endorsement feedback and the latest 2026 criteria.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">How long does it take?</div><div class="faq-a">Express AI Review (&pound;149) is delivered the same business day. Expert Review (&pound;349) takes 3 working days because a senior reviewer adds written commentary and section rewrites. Strategy Calls (&pound;99) are booked within 24 hours.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">What's the difference between Express AI Review (&pound;149) and Expert Review (&pound;349)?</div><div class="faq-a">Both score your plan against Innovation, Viability, and Scalability criteria. The &pound;149 AI Review gives you the scores, weakness breakdown, improvement suggestions, and rejection-pattern flags &mdash; same business day. The &pound;349 Expert Review adds a senior human reviewer who writes detailed commentary and rewrites the weakest sections of your plan, plus a 30-min strategy call to walk through the report. Pick Expert if you've been rejected before or your plan needs heavy lifting.</div></div>
-            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Is my business plan data stored or shared?</div><div class="faq-a">Your plan is handled confidentially and used only to produce your review. We don't share your data with any third party.</div></div>
-            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Can I use this if I've already been rejected?</div><div class="faq-a">Absolutely. This is especially useful for rejected applicants &mdash; submit your revised plan and we'll identify exactly what to fix before you resubmit.</div></div>
-            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Which endorsing body should I choose?</div><div class="faq-a">The report highlights your plan's strengths and weaknesses against the endorsement criteria used across all three UK endorsing bodies. It doesn't recommend a specific body, but the insights will help you make a more informed choice based on where your plan is strongest.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Can I use this if I've already been rejected?</div><div class="faq-a">Yes &mdash; especially useful for rejected applicants. The Expert Review tier (&pound;349) is designed for this: deep root-cause analysis plus rewrites of weak sections before you resubmit.</div></div>
         </div>
     </div>
 </section>
@@ -1654,9 +1549,9 @@
 
 <!-- ═══════════ FINAL CTA ═══════════ -->
 <section class="final-cta fade-in">
-    <h2>Don't submit to an endorsing body without knowing where your plan stands</h2>
-    <p>&pound;149 same-day AI review. &pound;349 expert review with senior reviewer. Built on real endorsement criteria and 2026 feedback.</p>
-    <a href="#review-tool" class="cta-primary" onclick="trackEvent('final_cta_click')" style="position:relative;">Submit My Plan &rarr;</a>
+    <h2>Submit with confidence, not crossed fingers.</h2>
+    <p>From &pound;99. Same-day AI scoring. Pay via Stripe.</p>
+    <a href="#review-tool" class="cta-primary" onclick="trackEvent('final_cta_click')" style="position:relative;">Score My Plan &rarr;</a>
 </section>
 
 <!-- FOOTER -->
@@ -1681,11 +1576,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); } });
 });
 
-// Scroll animations
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in, .stagger-children').forEach(el => obs.observe(el));
 </script>
 
 <script>
