@@ -1363,7 +1363,7 @@
                     <button type="button" class="cta-primary" id="consult-submit" disabled>Request My Strategy Call &rarr;</button>
                 </div>
                 <button type="button" class="consult-back-link" id="consult-redirect">Actually, I do have a draft plan &rarr;</button>
-                <p class="tool-disclaimer">After you submit, you can pay instantly via Stripe. We confirm your booking time within 24 hours. Not immigration advice.</p>
+                <p class="tool-disclaimer">Pay instantly via Stripe, then pick your call time on the next page. Not immigration advice.</p>
             </div>
 
             <!-- STEP 2: Business type -->
@@ -1960,9 +1960,9 @@ function trackEvent(name, value) {
             trackEvent('strategy_call_requested', 99);
             showThankYou(
                 '<div class="section-label">Request received</div>'
-                + '<h2 class="section-title-dark">Reserve your strategy call</h2>'
-                + '<p class="tool-subtitle">Pay &pound;99 to confirm your 45-min Founder Strategy Call. We\'ll then email you within 24 hours with a few times to book.</p>'
-                + '<p class="tool-subtitle"><a href="'+STRIPE_LINK_STRATEGY+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',99)">Pay &pound;99 &rarr;</a></p>'
+                + '<h2 class="section-title-dark">Book your strategy call</h2>'
+                + '<p class="tool-subtitle">Pay &pound;99 to confirm your 45-min Founder Strategy Call. After payment you\'ll be taken straight to our calendar to pick a time that suits you.</p>'
+                + '<p class="tool-subtitle"><a href="'+STRIPE_LINK_STRATEGY+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',99)">Pay &pound;99 &amp; book my time &rarr;</a></p>'
                 + '<p class="tool-subtitle" style="font-size:0.85rem;color:var(--text-muted);">Prefer to talk first? Email <a href="mailto:hello@founderendorsed.co.uk" style="color:var(--brand);">hello@founderendorsed.co.uk</a> and we\'ll get back to you.</p>'
             );
         } catch(err){
