@@ -12,13 +12,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Founder Endorsed &mdash; AI Business Plan Review for Innovator Founder Visa</title>
-    <meta name="description" content="AI-powered business plan review with human insights for UK Innovator Founder Visa applicants. Scored against Innovation, Viability, Scalability. Full report &pound;149, delivered within 48 hours.">
+    <meta name="description" content="AI business plan review for the UK Innovator Founder Visa. &pound;149 same-day AI report, &pound;349 expert review with senior reviewer, &pound;99 strategy call. Built on real endorsement feedback.">
     <meta name="keywords" content="Innovator Founder Visa, business plan review, endorsement criteria, innovation viability scalability, UK startup visa, endorsing body">
     <meta name="author" content="Founder Endorsed">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://founderendorsed.co.uk/">
     <meta property="og:title" content="Founder Endorsed &mdash; AI Business Plan Review for Innovator Founder Visa">
-    <meta property="og:description" content="AI + human insights on your Innovator Founder Visa business plan. Scored against the 3 endorsement criteria. &pound;149 full report, 48h turnaround.">
+    <meta property="og:description" content="AI scoring same-day (&pound;149), expert review (&pound;349), or strategy call (&pound;99). Scored against the 3 endorsement criteria. Built on real endorsement feedback.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://founderendorsed.co.uk/">
     <meta property="og:locale" content="en_GB">
@@ -27,7 +27,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Founder Endorsed &mdash; AI Business Plan Review for Innovator Founder Visa">
-    <meta name="twitter:description" content="AI + human insights on your Innovator Founder Visa business plan. &pound;149 full report, 48h turnaround.">
+    <meta name="twitter:description" content="AI scoring same-day (&pound;149), expert review (&pound;349), or strategy call (&pound;99) for your Innovator Founder Visa plan.">
     <meta name="twitter:image" content="https://founderendorsed.co.uk/og-image.png">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
@@ -43,9 +43,11 @@
         "serviceType": "Business plan review",
         "areaServed": "GB",
         "offers": {
-            "@type": "Offer",
-            "price": "149",
-            "priceCurrency": "GBP"
+            "@type": "AggregateOffer",
+            "lowPrice": "99",
+            "highPrice": "349",
+            "priceCurrency": "GBP",
+            "offerCount": "3"
         }
     }
     </script>
@@ -583,6 +585,25 @@
         .other-input { margin-top: 0.75rem; display: none; }
         .other-input.show { display: block; }
 
+        /* Tier selection cards (larger, with body copy) */
+        .tier-card { align-items: flex-start; padding: 1.2rem 1.3rem; }
+        .tier-card .radio-circle { margin-top: 0.25rem; }
+        .tier-text { flex: 1; }
+        .tier-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.15rem; }
+        .tier-price {
+            background: linear-gradient(135deg, var(--brand), #34D399);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; font-weight: 800;
+        }
+        .tier-meta {
+            font-size: 0.78rem; color: var(--text-muted);
+            margin-bottom: 0.5rem; letter-spacing: 0.02em;
+        }
+        .tier-desc {
+            font-size: 0.85rem; color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
         .wizard-nav {
             display: flex; justify-content: space-between; align-items: center;
             margin-top: 2rem; gap: 1rem;
@@ -994,6 +1015,14 @@
             gap: 1.5rem; max-width: 700px; margin: 2.5rem auto 0;
         }
         .pricing-grid.single { grid-template-columns: 1fr; max-width: 440px; }
+        .pricing-grid.triple {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1080px;
+            align-items: stretch;
+        }
+        @media (max-width: 900px) {
+            .pricing-grid.triple { grid-template-columns: 1fr; max-width: 440px; }
+        }
         @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
 
         .pricing-card {
@@ -1001,15 +1030,31 @@
             border: 1px solid var(--border-subtle);
             border-radius: 16px; padding: 2.25rem;
             transition: all 0.3s;
+            display: flex; flex-direction: column;
+            position: relative;
+            text-align: left;
         }
         .pricing-card.highlight {
             border-color: rgba(16,185,129,0.4);
             background: rgba(16,185,129,0.04);
             box-shadow: 0 0 40px rgba(16,185,129,0.08);
         }
+        .card-badge {
+            position: absolute; top: -10px; right: 1.5rem;
+            background: linear-gradient(135deg, var(--brand), #34D399);
+            color: #fff; font-size: 0.7rem; font-weight: 700;
+            padding: 0.3rem 0.7rem; border-radius: 6px;
+            letter-spacing: 0.04em; text-transform: uppercase;
+            box-shadow: 0 4px 12px var(--brand-glow);
+        }
         .pricing-card h3 {
             font-size: 1.15rem; font-weight: 700; color: #fff;
             margin-bottom: 0.25rem;
+        }
+        .pricing-card .card-meta {
+            font-size: 0.75rem; color: var(--text-muted);
+            margin-bottom: 0.75rem; font-weight: 500;
+            letter-spacing: 0.02em;
         }
         .pricing-card .card-price {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1017,8 +1062,10 @@
             background: linear-gradient(135deg, var(--brand), #34D399);
             -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.25rem;
+            line-height: 1;
         }
+        .pricing-card ul { flex-grow: 1; }
         .pricing-card ul { list-style: none; }
         .pricing-card li {
             padding: 0.35rem 0 0.35rem 1.5rem;
@@ -1031,10 +1078,11 @@
         }
         .pricing-card.highlight li::before { color: var(--brand); }
         .pricing-card .card-cta {
-            display: inline-block; margin-top: 1.5rem;
-            padding: 0.7rem 1.75rem; border-radius: 10px;
+            display: block; margin-top: 1.5rem;
+            padding: 0.8rem 1.75rem; border-radius: 10px;
             text-decoration: none; font-weight: 700;
             font-size: 0.875rem; transition: all 0.2s;
+            text-align: center;
         }
         .card-cta.primary {
             background: linear-gradient(135deg, var(--brand), #34D399);
@@ -1168,7 +1216,7 @@
         <p class="hero-sub">Get your plan analysed against the 3 endorsement criteria &mdash; Innovation, Viability, Scalability. AI scoring combined with human insights from real endorsement feedback.</p>
         <div class="hero-cta-wrap">
             <a href="#review-tool" class="cta-primary" onclick="trackEvent('hero_cta_click')">Submit My Plan &rarr;</a>
-            <span class="hero-note">AI + human insights &middot; &pound;149 full report &middot; 48h turnaround</span>
+            <span class="hero-note">AI scoring &middot; &pound;149 same-day &middot; &pound;349 expert review &middot; &pound;99 strategy call</span>
         </div>
     </section>
 
@@ -1260,7 +1308,7 @@
                 <p class="tool-subtitle">A &pound;149 plan review is most useful once you have a draft. Before you have a plan, what helps more is a 1-on-1 brainstorm to sense-check your idea against the visa criteria and map your next steps.</p>
                 <div class="consult-card">
                     <div class="consult-price">&pound;99</div>
-                    <div class="consult-meta">45-min Founder Strategy Call &middot; 1-on-1 with Yan</div>
+                    <div class="consult-meta">45-min Founder Strategy Call &middot; 1-on-1 with your reviewer</div>
                     <ul class="consult-includes">
                         <li>Pre-call review of your idea and current situation</li>
                         <li>45-min video call to brainstorm and pressure-test your direction</li>
@@ -1278,13 +1326,13 @@
                 </div>
                 <div class="form-field">
                     <label for="consult-topic">What would you like to brainstorm?</label>
-                    <textarea id="consult-topic" placeholder="Briefly describe your idea, where you're stuck, or what you'd most like Yan's help with..." rows="4" data-required></textarea>
+                    <textarea id="consult-topic" placeholder="Briefly describe your idea, where you're stuck, or what you'd most like help with on the call..." rows="4" data-required></textarea>
                 </div>
                 <div class="tool-submit-wrap">
                     <button type="button" class="cta-primary" id="consult-submit" disabled>Request My Strategy Call &rarr;</button>
                 </div>
                 <button type="button" class="consult-back-link" id="consult-redirect">Actually, I do have a draft plan &rarr;</button>
-                <p class="tool-disclaimer">Yan replies personally within 24 hours with a Stripe payment link and times to book. Not immigration advice.</p>
+                <p class="tool-disclaimer">We reply personally within 24 hours with a Stripe payment link and times to book. Not immigration advice.</p>
             </div>
 
             <!-- STEP 2: Business type -->
@@ -1331,6 +1379,32 @@
                 </div>
             </div>
 
+            <!-- STEP TIER: Choose tier -->
+            <div class="tool-step" data-step="tier">
+                <div class="step-eyebrow">Step 5</div>
+                <h2 class="step-question">Which review do you want?</h2>
+                <div class="radio-grid tier-grid" data-field="tier">
+                    <label class="radio-card tier-card">
+                        <span class="radio-circle"></span>
+                        <input type="radio" name="tier" value="ai">
+                        <div class="tier-text">
+                            <div class="tier-title">Express AI Review &middot; <span class="tier-price">&pound;149</span></div>
+                            <div class="tier-meta">Same business day &middot; AI scoring + report</div>
+                            <div class="tier-desc">Scores, weakness breakdown, suggestions, rejection patterns flagged. Best if your plan is drafted and you want fast feedback.</div>
+                        </div>
+                    </label>
+                    <label class="radio-card tier-card">
+                        <span class="radio-circle"></span>
+                        <input type="radio" name="tier" value="expert">
+                        <div class="tier-text">
+                            <div class="tier-title">Expert Review &middot; <span class="tier-price">&pound;349</span></div>
+                            <div class="tier-meta">3 working days &middot; AI + senior reviewer + 30-min call</div>
+                            <div class="tier-desc">Everything in AI Review, plus written commentary, section rewrites of weak parts, and a strategy call. Best if you've been rejected or your plan needs heavy lifting.</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
             <!-- STEP 5: Plan -->
             <div class="tool-step" data-step="5">
                 <div class="step-eyebrow">Final step</div>
@@ -1349,7 +1423,7 @@
                 <div class="tool-submit-wrap">
                     <button type="button" class="cta-primary" id="plan-submit" disabled>Submit for Review &rarr;</button>
                 </div>
-                <p class="tool-disclaimer">We review your plan with AI tools alongside human judgement. Report delivered within 48 hours. Not immigration advice.</p>
+                <p class="tool-disclaimer">We review your plan with AI tools alongside human judgement. Not immigration advice.</p>
             </div>
 
             <!-- NAV -->
@@ -1399,7 +1473,7 @@
             <div class="process-step fade-in-child">
                 <div class="step-number">3</div>
                 <h3>Get your full report</h3>
-                <p>&pound;149 for the full report: detailed weaknesses, specific suggestions, and common rejection patterns flagged. Delivered within 48h.</p>
+                <p>Pick AI Review (&pound;149, same business day) or Expert Review (&pound;349, 3 days, with senior reviewer + 30-min call). Delivered to your inbox.</p>
             </div>
         </div>
     </div>
@@ -1450,20 +1524,48 @@
 <section class="section-dark fade-in" id="pricing">
     <div class="section-inner" style="text-align: center;">
         <div class="section-label">Pricing</div>
-        <h2 class="section-title-dark" style="color: #fff;">One simple price. Full review, delivered.</h2>
-        <div class="pricing-grid single">
+        <h2 class="section-title-dark" style="color: #fff;">Pick the depth of review you need</h2>
+        <div class="pricing-grid triple">
+            <div class="pricing-card">
+                <h3>Strategy Call</h3>
+                <div class="card-price">&pound;99</div>
+                <div class="card-meta">45 min &middot; 1-on-1 video</div>
+                <ul>
+                    <li>Pre-call review of your idea</li>
+                    <li>45-min brainstorm + pressure-test</li>
+                    <li>Post-call action plan in 24h</li>
+                    <li>Honest visa-fit assessment</li>
+                    <li>Best for: pre-plan founders</li>
+                </ul>
+                <a href="#review-tool" class="card-cta secondary">Book a Call &rarr;</a>
+            </div>
             <div class="pricing-card highlight">
-                <h3>Full Business Plan Review</h3>
+                <div class="card-badge">Most popular</div>
+                <h3>Express AI Review</h3>
                 <div class="card-price">&pound;149</div>
+                <div class="card-meta">Same business day</div>
                 <ul>
                     <li>Innovation, Viability, Scalability scores (0&ndash;10)</li>
                     <li>Detailed weaknesses per criterion</li>
                     <li>Specific improvement suggestions</li>
                     <li>Common rejection patterns flagged</li>
                     <li>2026 criteria alignment check</li>
-                    <li>Report delivered within 48 hours</li>
+                    <li>Best for: drafted plans needing fast feedback</li>
                 </ul>
                 <a href="#review-tool" class="card-cta primary">Submit My Plan &rarr;</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Expert Review</h3>
+                <div class="card-price">&pound;349</div>
+                <div class="card-meta">3 working days</div>
+                <ul>
+                    <li>Everything in Express AI Review</li>
+                    <li>Senior reviewer written commentary</li>
+                    <li>Section-by-section rewrites of weak parts</li>
+                    <li>30-min strategy call included</li>
+                    <li>Best for: rejected applicants &amp; complex plans</li>
+                </ul>
+                <a href="#review-tool" class="card-cta secondary">Get Expert Review &rarr;</a>
             </div>
         </div>
     </div>
@@ -1477,8 +1579,8 @@
         <div class="faq-list">
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Is this a replacement for an immigration lawyer?</div><div class="faq-a">No. We review your business plan against endorsement criteria &mdash; we don't provide immigration legal advice. For legal guidance, work with a qualified immigration solicitor.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">How does the review work?</div><div class="faq-a">You submit your plan via the form. We analyse it using AI tools combined with human judgement, scoring it against the same Innovation, Viability, and Scalability criteria endorsing bodies use. Built on real endorsement feedback and the latest 2026 criteria.</div></div>
-            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">How long does it take?</div><div class="faq-a">Full reports are delivered by email within 48 hours of submission and payment.</div></div>
-            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">What's in the full &pound;149 report?</div><div class="faq-a">Innovation, Viability, and Scalability scores (0&ndash;10) with a detailed breakdown of weaknesses for each criterion, specific improvement suggestions, common rejection patterns flagged, and actionable next steps aligned with 2026 criteria.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">How long does it take?</div><div class="faq-a">Express AI Review (&pound;149) is delivered the same business day. Expert Review (&pound;349) takes 3 working days because a senior reviewer adds written commentary and section rewrites. Strategy Calls (&pound;99) are booked within 24 hours.</div></div>
+            <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">What's the difference between Express AI Review (&pound;149) and Expert Review (&pound;349)?</div><div class="faq-a">Both score your plan against Innovation, Viability, and Scalability criteria. The &pound;149 AI Review gives you the scores, weakness breakdown, improvement suggestions, and rejection-pattern flags &mdash; same business day. The &pound;349 Expert Review adds a senior human reviewer who writes detailed commentary and rewrites the weakest sections of your plan, plus a 30-min strategy call to walk through the report. Pick Expert if you've been rejected before or your plan needs heavy lifting.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Is my business plan data stored or shared?</div><div class="faq-a">Your plan is handled confidentially and used only to produce your review. We don't share your data with any third party.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Can I use this if I've already been rejected?</div><div class="faq-a">Absolutely. This is especially useful for rejected applicants &mdash; submit your revised plan and we'll identify exactly what to fix before you resubmit.</div></div>
             <div class="faq-item"><div class="faq-q" role="button" tabindex="0" aria-expanded="false">Which endorsing body should I choose?</div><div class="faq-a">The report highlights your plan's strengths and weaknesses against the endorsement criteria used across all three UK endorsing bodies. It doesn't recommend a specific body, but the insights will help you make a more informed choice based on where your plan is strongest.</div></div>
@@ -1486,10 +1588,41 @@
     </div>
 </section>
 
+<!-- ═══════════ FROM ABROAD ═══════════ -->
+<section class="section-warm fade-in">
+    <div class="section-inner">
+        <div class="section-label-dark">From India, Pakistan, or abroad?</div>
+        <h2 class="section-title-light">The 4 things most plans from outside the UK get wrong</h2>
+        <p class="section-desc">Endorsing bodies aren't biased against you &mdash; but they're under pressure to prove "genuineness," so your plan has to work harder. Here's where we see overseas applicants slip up most.</p>
+        <div class="offer-grid stagger-children">
+            <div class="offer-card fade-in-child">
+                <div class="offer-icon" aria-hidden="true">&#128257;</div>
+                <h3>"Adapting a model" reads as replication</h3>
+                <p>UK endorsing bodies score "adapting a US or India model to the UK" as replication, not innovation. They want clear differentiation against what's already trading in the UK. We flag this risk before you submit.</p>
+            </div>
+            <div class="offer-card fade-in-child">
+                <div class="offer-icon" aria-hidden="true">&#128202;</div>
+                <h3>Higher scrutiny on plans from Pakistan and India</h3>
+                <p>Reported Q1 2022 refusal rates: Pakistan ~40%, India ~24%, overall ~35%. Not a policy bias &mdash; endorsing bodies are under more pressure to prove genuineness. Your plan has to work twice as hard to stand out.</p>
+            </div>
+            <div class="offer-card fade-in-child">
+                <div class="offer-icon" aria-hidden="true">&#127482;&#127472;</div>
+                <h3>UK market traction is the hardest evidence</h3>
+                <p>Endorsing bodies want UK customer signal, local competitor analysis, and pilot evidence. Hard to gather from Karachi, Lahore, or Bangalore. We tell you specifically where your UK evidence is thin and what to add.</p>
+            </div>
+            <div class="offer-card fade-in-child">
+                <div class="offer-icon" aria-hidden="true">&#128196;</div>
+                <h3>Generic templated plans get spotted instantly</h3>
+                <p>Many low-cost overseas consultants ship templated plans. Endorsing bodies recognise the patterns immediately and reject. We score against the same signals they use &mdash; so you catch the "template feel" before they do.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══════════ FINAL CTA ═══════════ -->
 <section class="final-cta fade-in">
     <h2>Don't submit to an endorsing body without knowing where your plan stands</h2>
-    <p>&pound;149 full review. Based on real endorsement criteria and 2026 feedback. Delivered within 48h.</p>
+    <p>&pound;149 same-day AI review. &pound;349 expert review with senior reviewer. Built on real endorsement criteria and 2026 feedback.</p>
     <a href="#review-tool" class="cta-primary" onclick="trackEvent('final_cta_click')" style="position:relative;">Submit My Plan &rarr;</a>
 </section>
 
@@ -1534,9 +1667,10 @@ function trackEvent(name, value) {
 // Onboarding wizard
 (function(){
     const FORMSPREE = 'https://formspree.io/f/mnjgzqll';
-    const STRIPE_LINK = 'https://buy.stripe.com/28E3co4XO4sxeb4eeM57W00';
+    const STRIPE_LINK_AI = 'https://buy.stripe.com/28E3co4XO4sxeb4eeM57W00';
+    const STRIPE_LINK_EXPERT = null; // TODO: paste £349 buy.stripe.com link when ready
     const EARLY_STAGES = ['just_exploring','idea_no_plan'];
-    const PLAN_PATH = [1,2,3,4,5];
+    const PLAN_PATH = [1,2,3,4,'tier',5];
     const CONSULT_PATH = [1,'consult'];
 
     const container = document.getElementById('wizard-container');
@@ -1704,23 +1838,29 @@ function trackEvent(name, value) {
 
     // Consult "I do have a plan" escape link
     document.getElementById('consult-redirect')?.addEventListener('click', function(){
-        // Treat as if they picked drafted_plan
         state.answers.stage = 'drafted_plan_after_consult_offer';
         state.path = PLAN_PATH;
         state.history = [1, 2];
         showStep(2);
     });
 
+    function subjectPrefixForTier(tier){
+        if(tier === 'expert') return '[Expert Review] ';
+        if(tier === 'ai') return '[AI Review] ';
+        if(tier === 'strategy_call') return '[Strategy Call] ';
+        return '[Plan Review] ';
+    }
+
     function showThankYou(html){
         container.innerHTML = html;
     }
 
-    async function submit(type, payload){
+    async function submit(tierKey, payload){
         const fd = new FormData();
         Object.keys(payload).forEach(k => { if(payload[k] != null) fd.append(k, payload[k]); });
-        fd.append('request_type', type);
+        fd.append('request_type', tierKey);
         const subjectName = payload.name || 'Founder';
-        fd.append('_subject', (type === 'consultation' ? '[Consultation request] ' : '[Plan Review] ') + subjectName);
+        fd.append('_subject', subjectPrefixForTier(tierKey) + subjectName);
         const res = await fetch(FORMSPREE, {
             method: 'POST', body: fd,
             headers: { 'Accept': 'application/json' }
@@ -1728,27 +1868,42 @@ function trackEvent(name, value) {
         if(!res.ok) throw new Error('Submission failed');
     }
 
+    function planThankYou(tier){
+        if(tier === 'expert'){
+            const linkBlock = STRIPE_LINK_EXPERT
+                ? '<p class="tool-subtitle">Confirm your Expert Review now: '
+                  + '<a href="'+STRIPE_LINK_EXPERT+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',349)">Pay &pound;349 &rarr;</a></p>'
+                : '<p class="tool-subtitle">We\'ll email you a Stripe payment link for &pound;349 within a few hours so you can confirm your Expert Review.</p>';
+            return '<div class="section-label">Thank you</div>'
+                + '<h2 class="section-title-dark">Your Expert Review is reserved</h2>'
+                + '<p class="tool-subtitle">A senior reviewer will analyse your plan and write detailed commentary, plus rewrites of the weakest sections. We\'ll email you to book your 30-min strategy call once your slot is confirmed (usually 3 working days).</p>'
+                + linkBlock;
+        }
+        // ai (default)
+        return '<div class="section-label">Thank you</div>'
+            + '<h2 class="section-title-dark">We\'ve got your plan</h2>'
+            + '<p class="tool-subtitle">Your same-day AI Review is on the way. We\'ll email you the full scored report within a few hours.</p>'
+            + '<p class="tool-subtitle">Skip the queue and pay the &pound;149 now: '
+            + '<a href="'+STRIPE_LINK_AI+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',149)">Pay &pound;149 &rarr;</a></p>';
+    }
+
     // Plan submit (step 5)
     document.getElementById('plan-submit').addEventListener('click', async function(){
         const btn = this;
         btn.disabled = true; btn.textContent = 'Submitting...';
         try {
+            const tier = state.answers.tier || 'ai';
             const payload = {
                 ...state.answers,
+                tier: tier,
                 name: document.getElementById('user-name').value.trim(),
                 email: document.getElementById('user-email').value.trim(),
                 plan: document.getElementById('plan-text').value.trim(),
                 notes: document.getElementById('user-notes').value.trim()
             };
-            await submit('plan_review', payload);
-            trackEvent('plan_submitted');
-            showThankYou(
-                '<div class="section-label">Thank you</div>'
-                + '<h2 class="section-title-dark">We\'ve got your plan</h2>'
-                + '<p class="tool-subtitle">Yan will personally review your plan and email you within 48 hours with your scores and the full report.</p>'
-                + '<p class="tool-subtitle">Want to skip the queue and pay the &pound;149 now? '
-                + '<a href="'+STRIPE_LINK+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',149)">Click here to pay &rarr;</a></p>'
-            );
+            await submit(tier, payload);
+            trackEvent(tier === 'expert' ? 'expert_review_submitted' : 'ai_review_submitted', tier === 'expert' ? 349 : 149);
+            showThankYou(planThankYou(tier));
         } catch(err){
             btn.disabled = false; btn.textContent = 'Submit for Review \u2192';
             alert('Something went wrong \u2014 please email hello@founderendorsed.co.uk instead.');
@@ -1762,17 +1917,18 @@ function trackEvent(name, value) {
         try {
             const payload = {
                 stage: state.answers.stage,
+                tier: 'strategy_call',
                 name: document.getElementById('consult-name').value.trim(),
                 email: document.getElementById('consult-email').value.trim(),
                 brainstorm_topic: document.getElementById('consult-topic').value.trim()
             };
-            await submit('consultation', payload);
-            trackEvent('consult_requested');
+            await submit('strategy_call', payload);
+            trackEvent('strategy_call_requested', 99);
             showThankYou(
                 '<div class="section-label">Request received</div>'
-                + '<h2 class="section-title-dark">Yan will be in touch within 24 hours</h2>'
-                + '<p class="tool-subtitle">You\'ll get an email from Yan with a Stripe payment link for the &pound;99 strategy call and a few times to book the 45-minute video call.</p>'
-                + '<p class="tool-subtitle">In the meantime, feel free to reply to that email with anything else you\'d like to cover.</p>'
+                + '<h2 class="section-title-dark">We\'ll be in touch within 24 hours</h2>'
+                + '<p class="tool-subtitle">You\'ll get an email from us with a Stripe payment link for the &pound;99 strategy call and a few times to book your 45-minute video call.</p>'
+                + '<p class="tool-subtitle">In the meantime, feel free to reply with anything else you\'d like to cover on the call.</p>'
             );
         } catch(err){
             btn.disabled = false; btn.textContent = 'Request My Strategy Call \u2192';
