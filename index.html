@@ -1363,7 +1363,7 @@
                     <button type="button" class="cta-primary" id="consult-submit" disabled>Request My Strategy Call &rarr;</button>
                 </div>
                 <button type="button" class="consult-back-link" id="consult-redirect">Actually, I do have a draft plan &rarr;</button>
-                <p class="tool-disclaimer">We reply personally within 24 hours with a Stripe payment link and times to book. Not immigration advice.</p>
+                <p class="tool-disclaimer">After you submit, you can pay instantly via Stripe. We confirm your booking time within 24 hours. Not immigration advice.</p>
             </div>
 
             <!-- STEP 2: Business type -->
@@ -1702,6 +1702,7 @@ function trackEvent(name, value) {
     const FORMSPREE = 'https://formspree.io/f/mnjgzqll';
     const STRIPE_LINK_AI = 'https://buy.stripe.com/28E3co4XO4sxeb4eeM57W00';
     const STRIPE_LINK_EXPERT = 'https://buy.stripe.com/7sY8wI3TK3ot1oi9Yw57W01';
+    const STRIPE_LINK_STRATEGY = 'https://buy.stripe.com/cNi8wI61SbUZd701s057W02';
     const EARLY_STAGES = ['just_exploring','idea_no_plan'];
     const PLAN_PATH = [1,2,3,4,'tier',5];
     const CONSULT_PATH = [1,'consult'];
@@ -1959,9 +1960,10 @@ function trackEvent(name, value) {
             trackEvent('strategy_call_requested', 99);
             showThankYou(
                 '<div class="section-label">Request received</div>'
-                + '<h2 class="section-title-dark">We\'ll be in touch within 24 hours</h2>'
-                + '<p class="tool-subtitle">You\'ll get an email from us with a Stripe payment link for the &pound;99 strategy call and a few times to book your 45-minute video call.</p>'
-                + '<p class="tool-subtitle">In the meantime, feel free to reply with anything else you\'d like to cover on the call.</p>'
+                + '<h2 class="section-title-dark">Reserve your strategy call</h2>'
+                + '<p class="tool-subtitle">Pay &pound;99 to confirm your 45-min Founder Strategy Call. We\'ll then email you within 24 hours with a few times to book.</p>'
+                + '<p class="tool-subtitle"><a href="'+STRIPE_LINK_STRATEGY+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',99)">Pay &pound;99 &rarr;</a></p>'
+                + '<p class="tool-subtitle" style="font-size:0.85rem;color:var(--text-muted);">Prefer to talk first? Email <a href="mailto:hello@founderendorsed.co.uk" style="color:var(--brand);">hello@founderendorsed.co.uk</a> and we\'ll get back to you.</p>'
             );
         } catch(err){
             btn.disabled = false; btn.textContent = 'Request My Strategy Call \u2192';
