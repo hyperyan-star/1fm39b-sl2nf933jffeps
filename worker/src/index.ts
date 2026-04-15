@@ -26,8 +26,11 @@ interface PlanSubmission {
 }
 
 interface ClaudeReport {
-  scores: { innovation: number; viability: number; scalability: number };
+  scores: { innovation: number; viability: number; scalability: number }; // /18, /26, /14
+  total: number; // 0-58
+  verdict: "likely_pass" | "borderline" | "likely_fail";
   overall_assessment: string;
+  questions: RubricQuestion[];
   criteria: {
     innovation: CriterionDetail;
     viability: CriterionDetail;
@@ -35,6 +38,15 @@ interface ClaudeReport {
   };
   rejection_risks: string[];
   next_steps: string[];
+}
+
+interface RubricQuestion {
+  id: number;
+  name: string;
+  criterion: "innovation" | "viability" | "scalability";
+  score: number;
+  max: number;
+  commentary: string;
 }
 
 interface CriterionDetail {
@@ -222,7 +234,7 @@ async function generateReport(submission: PlanSubmission, env: Env): Promise<Cla
 // ─────────────────────────────────────────────────────────────
 async function sendReportEmail(submission: PlanSubmission, report: ClaudeReport, env: Env): Promise<void> {
   const html = renderReportEmail(submission, report);
-  const subject = `Your Innovator Founder Visa plan review (${avgScore(report).toFixed(1)}/10)`;
+  const subject = `Your Innovator Founder Visa plan review (${report.total}/58 — ${verdictLabel(report.verdict)})`;
 
   const res = await fetch("https://api.postmarkapp.com/email", {
     method: "POST",
@@ -337,8 +349,10 @@ function cors(env: Env, response: Response): Response {
   return new Response(response.body, { status: response.status, headers });
 }
 
-function avgScore(r: ClaudeReport): number {
-  return (r.scores.innovation + r.scores.viability + r.scores.scalability) / 3;
+function verdictLabel(v: ClaudeReport["verdict"]): string {
+  if (v === "likely_pass") return "likely PASS";
+  if (v === "likely_fail") return "likely FAIL";
+  return "borderline";
 }
 
 function stripHtml(html: string): string {
