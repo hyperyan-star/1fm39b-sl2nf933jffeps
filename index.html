@@ -968,6 +968,37 @@
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 1.25rem;
         }
+        .offer-grid.cols-2 {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 720px) {
+            .offer-grid.cols-2 { grid-template-columns: 1fr; }
+        }
+
+        /* "From abroad" section */
+        .abroad-inner { max-width: 1040px; }
+        .abroad-header { text-align: center; margin-bottom: 2.5rem; }
+        .abroad-lead {
+            margin-left: auto; margin-right: auto;
+            max-width: 640px; margin-bottom: 0;
+        }
+        .abroad-inner .offer-card {
+            padding: 1.75rem;
+        }
+        .abroad-inner .offer-card h3 {
+            font-size: 1.05rem; line-height: 1.35;
+            margin-bottom: 0.6rem;
+        }
+        .abroad-inner .offer-card p {
+            font-size: 0.92rem; line-height: 1.65;
+        }
+        .abroad-inner .offer-icon {
+            width: 44px; height: 44px;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, rgba(16,185,129,0.18), rgba(52,211,153,0.12));
+        }
         .offer-card {
             background: #fff;
             border: 1px solid var(--border-light);
@@ -1590,11 +1621,13 @@
 
 <!-- ═══════════ FROM ABROAD ═══════════ -->
 <section class="section-warm fade-in">
-    <div class="section-inner">
-        <div class="section-label-dark">From India, Pakistan, or abroad?</div>
-        <h2 class="section-title-light">The 4 things most plans from outside the UK get wrong</h2>
-        <p class="section-desc">Endorsing bodies aren't biased against you &mdash; but they're under pressure to prove "genuineness," so your plan has to work harder. Here's where we see overseas applicants slip up most.</p>
-        <div class="offer-grid stagger-children">
+    <div class="section-inner abroad-inner">
+        <div class="abroad-header">
+            <div class="section-label-dark">From India, Pakistan, or abroad?</div>
+            <h2 class="section-title-light">The 4 things most plans from outside the UK get wrong</h2>
+            <p class="section-desc abroad-lead">Endorsing bodies aren't biased against you &mdash; but they're under pressure to prove "genuineness," so your plan has to work harder. Here's where we see overseas applicants slip up most.</p>
+        </div>
+        <div class="offer-grid cols-2 stagger-children">
             <div class="offer-card fade-in-child">
                 <div class="offer-icon" aria-hidden="true">&#128257;</div>
                 <h3>"Adapting a model" reads as replication</h3>
@@ -1606,7 +1639,7 @@
                 <p>Reported Q1 2022 refusal rates: Pakistan ~40%, India ~24%, overall ~35%. Not a policy bias &mdash; endorsing bodies are under more pressure to prove genuineness. Your plan has to work twice as hard to stand out.</p>
             </div>
             <div class="offer-card fade-in-child">
-                <div class="offer-icon" aria-hidden="true">&#127482;&#127472;</div>
+                <div class="offer-icon" aria-hidden="true">&#127757;</div>
                 <h3>UK market traction is the hardest evidence</h3>
                 <p>Endorsing bodies want UK customer signal, local competitor analysis, and pilot evidence. Hard to gather from Karachi, Lahore, or Bangalore. We tell you specifically where your UK evidence is thin and what to add.</p>
             </div>
