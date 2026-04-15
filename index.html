@@ -352,8 +352,8 @@
             color: #fff;
         }
 
-        .tool-step { display: none; }
-        .tool-step.active { display: block; }
+        .tool-step { display: none; opacity: 0; transition: opacity 0.25s ease; }
+        .tool-step.active { display: block; opacity: 1; }
 
         .tool-subtitle {
             color: var(--text-secondary); font-size: 0.95rem;
@@ -499,6 +499,154 @@
             font-size: 0.7rem; color: var(--text-muted);
             margin-top: 0.75rem; text-align: center;
         }
+
+        /* ── WIZARD ── */
+        .wizard-progress {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .progress-dots { display: flex; gap: 0.4rem; }
+        .progress-dot {
+            width: 24px; height: 6px; border-radius: 3px;
+            background: var(--border-subtle);
+            transition: background 0.3s;
+        }
+        .progress-dot.done { background: var(--brand); }
+        .progress-dot.active {
+            background: var(--brand);
+            box-shadow: 0 0 8px var(--brand-glow);
+        }
+        .progress-label {
+            font-size: 0.75rem; font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+        }
+
+        .step-eyebrow {
+            font-size: 0.75rem; font-weight: 700;
+            color: var(--brand); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .step-question {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.4rem; font-weight: 800;
+            color: #fff; line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .step-question { font-size: 1.65rem; }
+        }
+
+        .radio-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+        @media (min-width: 540px) {
+            .radio-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+        }
+        .radio-card {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.95rem 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-medium);
+            border-radius: 12px; cursor: pointer;
+            transition: all 0.18s; user-select: none;
+            color: var(--text-secondary); font-size: 0.92rem;
+        }
+        .radio-card:hover {
+            border-color: rgba(16,185,129,0.4);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        .radio-card input { position: absolute; opacity: 0; pointer-events: none; }
+        .radio-card .radio-circle {
+            flex-shrink: 0;
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 2px solid var(--border-medium);
+            position: relative; transition: all 0.18s;
+        }
+        .radio-card.selected {
+            border-color: var(--brand);
+            background: rgba(16,185,129,0.08);
+            color: #fff;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+        .radio-card.selected .radio-circle {
+            border-color: var(--brand);
+            background: var(--brand);
+        }
+        .radio-card.selected .radio-circle::after {
+            content: ''; position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #fff;
+        }
+
+        .other-input { margin-top: 0.75rem; display: none; }
+        .other-input.show { display: block; }
+
+        .wizard-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 2rem; gap: 1rem;
+        }
+        .wizard-back, .wizard-next {
+            font-family: inherit; font-weight: 600; font-size: 0.9rem;
+            padding: 0.7rem 1.4rem; border-radius: 10px;
+            border: 1px solid var(--border-medium);
+            background: rgba(255,255,255,0.04);
+            color: var(--text-secondary); cursor: pointer;
+            transition: all 0.18s;
+        }
+        .wizard-back:hover, .wizard-next:hover:not(:disabled) {
+            color: #fff; border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+        .wizard-next:not(:disabled) {
+            background: linear-gradient(135deg, var(--brand), #34D399);
+            border-color: transparent; color: #fff;
+            box-shadow: 0 4px 14px var(--brand-glow);
+        }
+        .wizard-next:not(:disabled):hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--brand-glow);
+        }
+        .wizard-next:disabled {
+            opacity: 0.45; cursor: not-allowed;
+        }
+        .wizard-back-spacer { visibility: hidden; }
+
+        /* Consultation step */
+        .consult-card {
+            background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.05));
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 16px; padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .consult-price {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+        .consult-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+        .consult-includes { list-style: none; padding: 0; margin: 0; }
+        .consult-includes li {
+            padding-left: 1.5rem; position: relative;
+            font-size: 0.88rem; color: var(--text-secondary);
+            margin-bottom: 0.5rem; line-height: 1.5;
+        }
+        .consult-includes li::before {
+            content: '✓'; position: absolute; left: 0; top: 0;
+            color: var(--accent-purple); font-weight: 700;
+        }
+        .consult-back-link {
+            display: inline-block; margin-top: 1rem;
+            color: var(--text-muted); font-size: 0.82rem;
+            text-decoration: underline; cursor: pointer;
+            background: none; border: none; font-family: inherit;
+            padding: 0;
+        }
+        .consult-back-link:hover { color: var(--brand); }
 
         /* ── PROCESSING ── */
         .processing-animation { text-align: center; padding: 4rem 0; }
@@ -1078,39 +1226,137 @@
         </div>
     </div>
 
-    <!-- ═══════════ SUBMISSION FORM (DARK) ═══════════ -->
+    <!-- ═══════════ ONBOARDING WIZARD (DARK) ═══════════ -->
     <section id="review-tool" class="tool-section">
-        <div class="tool-container">
-            <div class="section-label">Submit your plan</div>
-            <h2 class="section-title-dark">Get your business plan reviewed</h2>
-            <p class="tool-subtitle">Paste your plan below. You'll get a full AI-powered review with human insights, scored against the 3 Innovator Founder Visa endorsement criteria. Report delivered within 48 hours.</p>
+        <div class="tool-container" id="wizard-container">
+            <div class="wizard-progress">
+                <div class="progress-dots" id="progress-dots">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+                <div class="progress-label" id="progress-label">Step 1 of 5</div>
+            </div>
 
-            <form id="review-form" action="https://formspree.io/f/mnjgzqll" method="POST">
+            <!-- STEP 1: Stage -->
+            <div class="tool-step active" data-step="1">
+                <div class="step-eyebrow">A few quick questions</div>
+                <h2 class="step-question">Where are you in your Innovator Founder Visa journey?</h2>
+                <div class="radio-grid" data-field="stage">
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="stage" value="just_exploring"><span>Just exploring the visa</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="stage" value="idea_no_plan"><span>Have an idea, no plan yet</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="stage" value="drafted_plan"><span>Drafted a plan</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="stage" value="awaiting_decision"><span>Submitted, awaiting decision</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="stage" value="rejected_rebuilding"><span>Was rejected, rebuilding</span></label>
+                </div>
+            </div>
+
+            <!-- STEP CONSULT: Branch for early-stage -->
+            <div class="tool-step" data-step="consult">
+                <div class="step-eyebrow">Better fit for you</div>
+                <h2 class="step-question">You're a bit earlier &mdash; let's chat instead</h2>
+                <p class="tool-subtitle">A &pound;149 plan review is most useful once you have a draft. Before you have a plan, what helps more is a 1-on-1 brainstorm to sense-check your idea against the visa criteria and map your next steps.</p>
+                <div class="consult-card">
+                    <div class="consult-price">&pound;99</div>
+                    <div class="consult-meta">45-min Founder Strategy Call &middot; 1-on-1 with Yan</div>
+                    <ul class="consult-includes">
+                        <li>Pre-call review of your idea and current situation</li>
+                        <li>45-min video call to brainstorm and pressure-test your direction</li>
+                        <li>Post-call action plan emailed within 24 hours</li>
+                        <li>Honest read on whether the Innovator Founder Visa is the right route for you</li>
+                    </ul>
+                </div>
+                <div class="form-field">
+                    <label for="consult-name">Your name</label>
+                    <input type="text" id="consult-name" placeholder="Jane Founder" data-required>
+                </div>
+                <div class="form-field">
+                    <label for="consult-email">Email</label>
+                    <input type="email" id="consult-email" placeholder="you@example.com" data-required>
+                </div>
+                <div class="form-field">
+                    <label for="consult-topic">What would you like to brainstorm?</label>
+                    <textarea id="consult-topic" placeholder="Briefly describe your idea, where you're stuck, or what you'd most like Yan's help with..." rows="4" data-required></textarea>
+                </div>
+                <div class="tool-submit-wrap">
+                    <button type="button" class="cta-primary" id="consult-submit" disabled>Request My Strategy Call &rarr;</button>
+                </div>
+                <button type="button" class="consult-back-link" id="consult-redirect">Actually, I do have a draft plan &rarr;</button>
+                <p class="tool-disclaimer">Yan replies personally within 24 hours with a Stripe payment link and times to book. Not immigration advice.</p>
+            </div>
+
+            <!-- STEP 2: Business type -->
+            <div class="tool-step" data-step="2">
+                <div class="step-eyebrow">Step 2</div>
+                <h2 class="step-question">What kind of business are you building?</h2>
+                <div class="radio-grid cols-2" data-field="business_type">
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="tech_saas"><span>Tech / Software / SaaS</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="hardware_product"><span>Hardware / Physical product</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="services_consultancy"><span>Services / Consultancy</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="marketplace_platform"><span>Marketplace / Platform</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="creative_media"><span>Creative / Media</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="business_type" value="other"><span>Other</span></label>
+                </div>
+                <div class="form-field other-input" id="other-input">
+                    <label for="business-type-other">Tell us briefly</label>
+                    <input type="text" id="business-type-other" placeholder="e.g. biotech research tool">
+                </div>
+            </div>
+
+            <!-- STEP 3: Endorsing body -->
+            <div class="tool-step" data-step="3">
+                <div class="step-eyebrow">Step 3</div>
+                <h2 class="step-question">Which endorsing body are you targeting?</h2>
+                <div class="radio-grid" data-field="endorsing_body">
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="endorsing_body" value="ukes"><span>UK Endorsement Services (UKES)</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="endorsing_body" value="innovator_international"><span>Innovator International</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="endorsing_body" value="envestors"><span>Envestors</span></label>
+                    <label class="radio-card"><span class="radio-circle"></span><input type="radio" name="endorsing_body" value="not_sure"><span>Not sure yet</span></label>
+                </div>
+            </div>
+
+            <!-- STEP 4: Your details -->
+            <div class="tool-step" data-step="4">
+                <div class="step-eyebrow">Step 4</div>
+                <h2 class="step-question">Your details</h2>
                 <div class="form-field">
                     <label for="user-name">Your name</label>
-                    <input type="text" id="user-name" name="name" placeholder="Jane Founder" required>
+                    <input type="text" id="user-name" placeholder="Jane Founder" data-required>
                 </div>
                 <div class="form-field">
-                    <label for="user-email">Email</label>
-                    <input type="email" id="user-email" name="email" placeholder="you@example.com" required>
+                    <label for="user-email">Email (where we'll send your report)</label>
+                    <input type="email" id="user-email" placeholder="you@example.com" data-required>
                 </div>
+            </div>
+
+            <!-- STEP 5: Plan -->
+            <div class="tool-step" data-step="5">
+                <div class="step-eyebrow">Final step</div>
+                <h2 class="step-question">Your business plan</h2>
+                <p class="tool-subtitle">Paste the full text below. The more we have, the more useful the review.</p>
                 <div class="form-field">
-                    <label for="plan-text">Your business plan</label>
                     <div class="glass-input-card">
-                        <textarea id="plan-text" name="plan" placeholder="Paste your business plan text here..." rows="10" required></textarea>
+                        <textarea id="plan-text" placeholder="Paste your business plan text here..." rows="10" data-required></textarea>
                     </div>
                     <p class="field-hint">Prefer to send a PDF? Email it to hello@founderendorsed.co.uk after submitting.</p>
                 </div>
                 <div class="form-field">
-                    <label for="user-notes">Anything we should know? (optional)</label>
-                    <textarea id="user-notes" name="notes" placeholder="Previous rejections, target endorsing body, deadlines..." rows="3"></textarea>
+                    <label for="user-notes">Anything else we should know? (optional)</label>
+                    <textarea id="user-notes" placeholder="Deadlines, specific concerns, what you want us to focus on..." rows="3"></textarea>
                 </div>
-                <input type="hidden" name="_subject" value="New plan review submission">
                 <div class="tool-submit-wrap">
-                    <button type="submit" class="cta-primary" onclick="trackEvent('plan_submitted')">Submit for Review &rarr;</button>
+                    <button type="button" class="cta-primary" id="plan-submit" disabled>Submit for Review &rarr;</button>
                 </div>
-                <p class="tool-disclaimer">We review your plan with AI tools alongside human judgement. This is not immigration advice.</p>
-            </form>
+                <p class="tool-disclaimer">We review your plan with AI tools alongside human judgement. Report delivered within 48 hours. Not immigration advice.</p>
+            </div>
+
+            <!-- NAV -->
+            <div class="wizard-nav" id="wizard-nav">
+                <button type="button" class="wizard-back" id="wizard-back">&larr; Back</button>
+                <button type="button" class="wizard-next" id="wizard-next" disabled>Next &rarr;</button>
+            </div>
         </div>
     </section>
 </div><!-- end hero-wrap -->
@@ -1285,45 +1531,270 @@ function trackEvent(name, value) {
 </script>
 
 <script>
-// Review form submission (AJAX to Formspree to keep user on page)
+// Onboarding wizard
 (function(){
-    const form = document.getElementById('review-form');
-    if(!form) return;
-    const container = form.parentElement;
-    form.addEventListener('submit', async function(e){
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
+    const FORMSPREE = 'https://formspree.io/f/mnjgzqll';
+    const STRIPE_LINK = 'https://buy.stripe.com/28E3co4XO4sxeb4eeM57W00';
+    const EARLY_STAGES = ['just_exploring','idea_no_plan'];
+    const PLAN_PATH = [1,2,3,4,5];
+    const CONSULT_PATH = [1,'consult'];
+
+    const container = document.getElementById('wizard-container');
+    if(!container) return;
+    const dots = document.getElementById('progress-dots');
+    const progressLabel = document.getElementById('progress-label');
+    const nav = document.getElementById('wizard-nav');
+    const backBtn = document.getElementById('wizard-back');
+    const nextBtn = document.getElementById('wizard-next');
+
+    const state = { step: 1, history: [1], answers: {}, path: PLAN_PATH };
+
+    function showStep(step){
+        document.querySelectorAll('.tool-step').forEach(el => el.classList.remove('active'));
+        const el = document.querySelector('[data-step="'+step+'"]');
+        if(el) el.classList.add('active');
+        state.step = step;
+        updateProgress();
+        updateNav();
+        validateCurrentStep();
+        container.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function updateProgress(){
+        const path = state.path;
+        const totalSteps = path.length;
+        const idx = path.indexOf(state.step);
+        const dotCount = totalSteps;
+        dots.innerHTML = '';
+        for(let i=0; i<dotCount; i++){
+            const d = document.createElement('div');
+            d.className = 'progress-dot' + (i < idx ? ' done' : i === idx ? ' active' : '');
+            dots.appendChild(d);
+        }
+        progressLabel.textContent = 'Step '+(idx+1)+' of '+totalSteps;
+    }
+
+    function updateNav(){
+        const step = state.step;
+        nav.style.display = 'flex';
+        backBtn.style.visibility = state.history.length > 1 ? 'visible' : 'hidden';
+        // Terminal steps (consult, step 5) have their own submit buttons — hide the generic Next
+        if(step === 'consult' || step === 5){
+            nextBtn.style.display = 'none';
+            nav.style.justifyContent = 'flex-start';
+        } else {
+            nextBtn.style.display = '';
+            nav.style.justifyContent = 'space-between';
+        }
+    }
+
+    function validateCurrentStep(){
+        const step = state.step;
+        const stepEl = document.querySelector('[data-step="'+step+'"]');
+        if(!stepEl) return;
+
+        // Radio steps
+        const radioGrid = stepEl.querySelector('.radio-grid');
+        if(radioGrid){
+            const checked = radioGrid.querySelector('input[type="radio"]:checked');
+            let valid = !!checked;
+            // "Other" branch in step 2
+            if(checked && checked.value === 'other'){
+                const other = document.getElementById('business-type-other');
+                valid = other && other.value.trim().length > 0;
+            }
+            nextBtn.disabled = !valid;
+            return;
+        }
+
+        // Step 4: details (name + valid email)
+        if(step === 4){
+            const name = document.getElementById('user-name').value.trim();
+            const email = document.getElementById('user-email').value.trim();
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            // Step 4 uses Next button which advances to Step 5
+            nextBtn.disabled = !(name && emailOk);
+            return;
+        }
+
+        // Consult step
+        if(step === 'consult'){
+            const name = document.getElementById('consult-name').value.trim();
+            const email = document.getElementById('consult-email').value.trim();
+            const topic = document.getElementById('consult-topic').value.trim();
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            document.getElementById('consult-submit').disabled = !(name && emailOk && topic.length > 5);
+            return;
+        }
+
+        // Step 5: plan textarea required
+        if(step === 5){
+            const plan = document.getElementById('plan-text').value.trim();
+            document.getElementById('plan-submit').disabled = plan.length < 50;
+            return;
+        }
+    }
+
+    // Radio card selection styling + answer capture
+    document.querySelectorAll('.radio-grid').forEach(grid => {
+        grid.addEventListener('change', function(e){
+            if(e.target.type !== 'radio') return;
+            grid.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+            e.target.closest('.radio-card').classList.add('selected');
+            const field = grid.dataset.field;
+            state.answers[field] = e.target.value;
+            // Show "other" textbox when applicable
+            if(field === 'business_type'){
+                const other = document.getElementById('other-input');
+                if(e.target.value === 'other'){ other.classList.add('show'); }
+                else { other.classList.remove('show'); state.answers.business_type_other = ''; }
+            }
+            validateCurrentStep();
+        });
+    });
+
+    // Other input keystroke validation
+    document.getElementById('business-type-other')?.addEventListener('input', function(){
+        state.answers.business_type_other = this.value.trim();
+        validateCurrentStep();
+    });
+
+    // Step 4 + consult + step 5 input listeners
+    ['user-name','user-email','plan-text','consult-name','consult-email','consult-topic','user-notes'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('input', validateCurrentStep);
+    });
+
+    // Next button: advance to next step in path (with branching)
+    nextBtn.addEventListener('click', function(){
+        const step = state.step;
+
+        // Branching from step 1
+        if(step === 1){
+            const stage = state.answers.stage;
+            if(EARLY_STAGES.includes(stage)){
+                state.path = CONSULT_PATH;
+                state.history.push('consult');
+                showStep('consult');
+                return;
+            } else {
+                state.path = PLAN_PATH;
+            }
+        }
+
+        // Step 4 → Step 5 (last "Next", then Step 5 has its own submit)
+        const path = state.path;
+        const idx = path.indexOf(step);
+        if(idx >= 0 && idx < path.length - 1){
+            const nextStep = path[idx + 1];
+            state.history.push(nextStep);
+            showStep(nextStep);
+        }
+    });
+
+    // Back button: pop history
+    backBtn.addEventListener('click', function(){
+        if(state.history.length <= 1) return;
+        state.history.pop();
+        const prev = state.history[state.history.length - 1];
+        // Reset path if coming back to step 1
+        if(prev === 1){ state.path = PLAN_PATH; }
+        showStep(prev);
+    });
+
+    // Consult "I do have a plan" escape link
+    document.getElementById('consult-redirect')?.addEventListener('click', function(){
+        // Treat as if they picked drafted_plan
+        state.answers.stage = 'drafted_plan_after_consult_offer';
+        state.path = PLAN_PATH;
+        state.history = [1, 2];
+        showStep(2);
+    });
+
+    function showThankYou(html){
+        container.innerHTML = html;
+    }
+
+    async function submit(type, payload){
+        const fd = new FormData();
+        Object.keys(payload).forEach(k => { if(payload[k] != null) fd.append(k, payload[k]); });
+        fd.append('request_type', type);
+        const subjectName = payload.name || 'Founder';
+        fd.append('_subject', (type === 'consultation' ? '[Consultation request] ' : '[Plan Review] ') + subjectName);
+        const res = await fetch(FORMSPREE, {
+            method: 'POST', body: fd,
+            headers: { 'Accept': 'application/json' }
+        });
+        if(!res.ok) throw new Error('Submission failed');
+    }
+
+    // Plan submit (step 5)
+    document.getElementById('plan-submit').addEventListener('click', async function(){
+        const btn = this;
+        btn.disabled = true; btn.textContent = 'Submitting...';
         try {
-            const res = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            });
-            if(!res.ok) throw new Error('Submission failed');
+            const payload = {
+                ...state.answers,
+                name: document.getElementById('user-name').value.trim(),
+                email: document.getElementById('user-email').value.trim(),
+                plan: document.getElementById('plan-text').value.trim(),
+                notes: document.getElementById('user-notes').value.trim()
+            };
+            await submit('plan_review', payload);
             trackEvent('plan_submitted');
-            container.innerHTML = '<div class="section-label">Thank you</div>'
+            showThankYou(
+                '<div class="section-label">Thank you</div>'
                 + '<h2 class="section-title-dark">We\'ve got your plan</h2>'
-                + '<p class="tool-subtitle">We\'ll review it and email you within 48 hours with your scores and next steps. '
-                + 'If you\'d like to skip ahead and pay the &pound;149 now, '
-                + '<a href="https://buy.stripe.com/28E3co4XO4sxeb4eeM57W00" style="color:var(--brand);text-decoration:underline;" onclick="trackEvent(\'payment_initiated\',149)">click here to pay</a>.</p>';
-        } catch(err) {
-            btn.disabled = false;
-            btn.textContent = 'Submit for Review →';
-            alert('Something went wrong — please email hello@founderendorsed.co.uk instead.');
+                + '<p class="tool-subtitle">Yan will personally review your plan and email you within 48 hours with your scores and the full report.</p>'
+                + '<p class="tool-subtitle">Want to skip the queue and pay the &pound;149 now? '
+                + '<a href="'+STRIPE_LINK+'" style="color:var(--brand);text-decoration:underline;font-weight:600;" onclick="trackEvent(\'payment_initiated\',149)">Click here to pay &rarr;</a></p>'
+            );
+        } catch(err){
+            btn.disabled = false; btn.textContent = 'Submit for Review \u2192';
+            alert('Something went wrong \u2014 please email hello@founderendorsed.co.uk instead.');
+        }
+    });
+
+    // Consult submit
+    document.getElementById('consult-submit').addEventListener('click', async function(){
+        const btn = this;
+        btn.disabled = true; btn.textContent = 'Submitting...';
+        try {
+            const payload = {
+                stage: state.answers.stage,
+                name: document.getElementById('consult-name').value.trim(),
+                email: document.getElementById('consult-email').value.trim(),
+                brainstorm_topic: document.getElementById('consult-topic').value.trim()
+            };
+            await submit('consultation', payload);
+            trackEvent('consult_requested');
+            showThankYou(
+                '<div class="section-label">Request received</div>'
+                + '<h2 class="section-title-dark">Yan will be in touch within 24 hours</h2>'
+                + '<p class="tool-subtitle">You\'ll get an email from Yan with a Stripe payment link for the &pound;99 strategy call and a few times to book the 45-minute video call.</p>'
+                + '<p class="tool-subtitle">In the meantime, feel free to reply to that email with anything else you\'d like to cover.</p>'
+            );
+        } catch(err){
+            btn.disabled = false; btn.textContent = 'Request My Strategy Call \u2192';
+            alert('Something went wrong \u2014 please email hello@founderendorsed.co.uk instead.');
         }
     });
 
     // Payment return handler
-    const p = new URLSearchParams(window.location.search);
-    if(p.get('paid')==='true'){
-        trackEvent('payment_completed',149);
-        container.innerHTML = '<div class="section-label">Payment received</div>'
-            + '<h2 class="section-title-dark">Thank you — your report is on the way</h2>'
-            + '<p class="tool-subtitle">We\'ve got your payment and will deliver your full report within 48 hours. Check your inbox.</p>';
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('paid') === 'true'){
+        trackEvent('payment_completed', 149);
+        showThankYou(
+            '<div class="section-label">Payment received</div>'
+            + '<h2 class="section-title-dark">Thank you &mdash; your report is on the way</h2>'
+            + '<p class="tool-subtitle">We\'ve got your payment and will deliver your full report within 48 hours. Check your inbox.</p>'
+        );
         window.history.replaceState({},'',window.location.pathname);
     }
+
+    // Initial render
+    updateProgress();
+    updateNav();
 })();
 </script>
 
