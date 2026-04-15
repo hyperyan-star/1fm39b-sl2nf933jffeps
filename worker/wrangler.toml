@@ -1,0 +1,20 @@
+name = "founder-endorsed-worker"
+main = "src/index.ts"
+compatibility_date = "2025-01-15"
+
+# KV namespace for storing pending plan submissions between
+# wizard submit and Stripe payment confirmation.
+[[kv_namespaces]]
+binding = "PLANS"
+id = "fce51fb461de481784dbf00df7e7a3ba"
+
+[observability]
+enabled = true
+
+# Secrets (added via Cloudflare dashboard or `wrangler secret put`):
+#   ANTHROPIC_API_KEY      — Claude API key
+#   POSTMARK_TOKEN         — Postmark Server API token
+#   STRIPE_WEBHOOK_SECRET  — Stripe webhook signing secret (whsec_...)
+#   STRIPE_LINK_AI         — buy.stripe.com URL for £149 AI Review
+#   FROM_EMAIL             — verified sender, e.g. hello@founderendorsed.co.uk
+#   SITE_ORIGIN            — https://founderendorsed.co.uk (for CORS)
