@@ -30,6 +30,7 @@ interface ClaudeReport {
   total: number; // 0-58
   verdict: "likely_pass" | "borderline" | "likely_fail";
   overall_assessment: string;
+  priority_fixes: PriorityFix[]; // top 3 cross-criterion fixes
   questions: RubricQuestion[];
   criteria: {
     innovation: CriterionDetail;
@@ -37,7 +38,24 @@ interface ClaudeReport {
     scalability: CriterionDetail;
   };
   rejection_risks: string[];
-  next_steps: string[];
+  rebuild_plan: {
+    week_1: RebuildWeek;
+    week_2: RebuildWeek;
+    week_3: RebuildWeek;
+  };
+}
+
+interface PriorityFix {
+  question_id: number;
+  criterion: "innovation" | "viability" | "scalability";
+  headline: string;
+  fix: string;
+}
+
+interface RebuildWeek {
+  focus: string;
+  tasks: string[];
+  deliverable: string;
 }
 
 interface RubricQuestion {
@@ -157,7 +175,7 @@ async function handleStripeWebhook(request: Request, env: Env): Promise<Response
   // is visible in Stripe's webhook log; if it takes >25s we'd need waitUntil.
   try {
     const report = await generateReport(submission, env);
-    await sendReportEmail(submission, report, env);
+    await sendReportEmail(submission, report, submissionId, env);
     submission.status = "report_sent";
     await env.PLANS.put(`plan:${submissionId}`, JSON.stringify(submission), {
       expirationTtl: 60 * 60 * 24 * 30,
@@ -232,8 +250,9 @@ async function generateReport(submission: PlanSubmission, env: Env): Promise<Cla
 // ─────────────────────────────────────────────────────────────
 // Postmark email send
 // ─────────────────────────────────────────────────────────────
-async function sendReportEmail(submission: PlanSubmission, report: ClaudeReport, env: Env): Promise<void> {
-  const html = renderReportEmail(submission, report);
+async function sendReportEmail(submission: PlanSubmission, report: ClaudeReport, submissionId: string, env: Env): Promise<void> {
+  const reportId = `FE-${submissionId.slice(0, 8).toUpperCase()}`;
+  const html = renderReportEmail(submission, report, reportId);
   const subject = `Your Innovator Founder Visa plan review (${report.total}/58 — ${verdictLabel(report.verdict)})`;
 
   const res = await fetch("https://api.postmarkapp.com/email", {
